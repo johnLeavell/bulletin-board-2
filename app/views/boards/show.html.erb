@@ -12,6 +12,7 @@
   Add a new post
 </h2>
 
+<% if current_user != nil %>
 <form action="/insert_post" method="post">
   <div>
     <label for="title_box">
@@ -43,7 +44,9 @@
     Add post
   </button>
 </form>
-
+<% else %>
+  <p>You must <a href="/users/sign_in">sign in</a> to add a post.</p>
+<% end %>
 <hr>
 
 <h2>Active posts</h2>
@@ -56,9 +59,10 @@
     <th>Expires on</th>
   </tr>
 
+<% if current_user != nil %>
   <% @active_posts.each do |a_post| %>
     <tr>
-      <td><%= a_post.title %></td>
+      <td><%= a_post.title %> <a href="/delete_post/<%= a_post.id%>"">Delete post</a></td>
       <td><%= a_post.body %></td>
       <td><%= a_post.created_at.strftime("%b %e, %Y") %></td>
       <td><%= a_post.expires_on.strftime("%b %e, %Y") %></td>
@@ -84,4 +88,5 @@
       <td><%= a_post.expires_on.strftime("%b %e, %Y") %></td>
     </tr>
   <% end %>
+<% end %>
 </table>

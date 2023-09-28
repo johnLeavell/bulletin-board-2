@@ -11,23 +11,7 @@
   </head>
 
   <body>
-    <nav>
-      <a href="/">Bulletin Board</a>
-    </nav>
-
-    <hr>
-
-    <% if notice.present? %>
-      <div style="color: green">
-        <%= notice %>
-      </div>
-    <% end %>
-
-    <% if alert.present? %>
-      <div style="color: red">
-        <%= alert %>
-      </div>
-    <% end %>
+    <%= render "shared/nav" %>
 
     <%= yield %>
   </body>
